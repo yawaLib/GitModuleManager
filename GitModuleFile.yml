@@ -1,0 +1,18 @@
+excludes: 
+  - LICENSE
+  - README*
+
+root: Modules
+
+modules:
+  -
+    path: Chrome/Extension
+    url: git@github.com:hatch7023/chromeExtensionSample.git
+    target: master
+  -
+    path: Assets/Plugins/Utility
+    url: git@github.com:hatch7023/UnityUtility.git
+    target: master
+    excludes: 
+      - 'Sample*'
+
