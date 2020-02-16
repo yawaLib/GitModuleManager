@@ -10,8 +10,9 @@ modules:
     url: git@github.com:hatch7023/chromeExtensionSample.git
     target: master
   -
-    path: Assets/Plugins/Utility
-    url: git@github.com:hatch7023/UnityUtility.git
+    path: UnityDebug
+    url: git@github.com:yawaLib/UnityDebug.git
+    root: Script
     target: master
     excludes: 
       - 'Sample*'

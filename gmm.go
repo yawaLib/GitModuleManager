@@ -4,13 +4,14 @@ package main
 import (
 	"bufio"
 	"fmt"
-	yaml "gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"os/user"
 	"path/filepath"
 	"strings"
+
+	yaml "gopkg.in/yaml.v2"
 )
 
 type Data struct {
@@ -22,6 +23,7 @@ type Data struct {
 type Module struct {
 	Path           string   `yaml:"path"`
 	Url            string   `yaml:"url"`
+	RootDir        string   `yaml:"root"`
 	CheckoutTarget string   `yaml:"target"`
 	Excludes       []string `yaml:"excludes"`
 	IsLock         bool     `yaml:"lock"`
@@ -34,9 +36,9 @@ type DependData struct {
 const (
 	yml_file        = "./GitModuleFile.yml"
 	clone_dir       = ".gmm"
-	version         = "0.0.2"
+	version         = "0.1.1"
 	dependency_file = "GMMDepend.yml"
-	github_url      = "https://github.com/hatch7023/GitModuleManager"
+	github_url      = "https://github.com/yawaLib/GitModuleManager"
 )
 
 var cloneRepositories map[string]string
@@ -292,8 +294,17 @@ func switch_git_repo(data Data, module Module, path string) bool {
 	os.Chdir(prevDir)
 
 	// Sysnc begin
-	path_to := data.RootDir + "/" + module.Path
-	if !rsync_files(data.Excludes, module.Excludes, clone_path+"/", path_to) {
+	dest_path := data.RootDir + "/" + module.Path
+	source_path := clone_path + "/"
+	if module.RootDir != "" {
+		if strings.HasSuffix(module.RootDir, "/") {
+			source_path += module.RootDir
+		} else {
+			source_path += module.RootDir + "/"
+		}
+	}
+
+	if !rsync_files(data.Excludes, module.Excludes, source_path, dest_path) {
 		fmt.Println("Sync Error.")
 	}
 
