@@ -4,14 +4,16 @@ excludes:
 
 root: Modules
 
+gitSshCommand: ""
+
 modules:
   -
     path: Chrome/Extension
-    url: git@github.com:hatch7023/chromeExtensionSample.git
+    url: git@github.com:Yayorozu/chromeExtensionSample.git
     target: master
   -
-    path: UnityDebug
-    url: git@github.com:yawaLib/UnityDebug.git
+    path: Debug
+    url: git@github.com:yayorozu/UnityDebug.git
     root: Script
     target: master
     excludes: 

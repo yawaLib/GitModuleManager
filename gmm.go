@@ -15,9 +15,10 @@ import (
 )
 
 type Data struct {
-	Excludes []string `yaml:"excludes"`
-	RootDir  string   `yaml:"root"`
-	Modules  []Module `yaml:"modules"`
+	Excludes   []string `yaml:"excludes"`
+	RootDir    string   `yaml:"root"`
+	Modules    []Module `yaml:"modules"`
+	SshCommand string   `yaml:"gitSshCommand"`
 }
 
 type Module struct {
@@ -80,7 +81,7 @@ func help() {
 	fmt.Println("Available commands")
 	fmt.Print("\x1b[0m")
 	fmt.Println("  init\t\tcreate an template gmm.yml")
-	fmt.Println("  initDepend\t\tcreate an template GMMDepend.yml")
+	fmt.Println("  initDepend\tcreate an template GMMDepend.yml")
 	fmt.Println("  sync\t\tsync git repository")
 	fmt.Println("  resync\tdelete root directory and sync git repository")
 	fmt.Println("  clean\t\tremove tml define root directory")
@@ -106,6 +107,8 @@ excludes:
   - README*,
 
 root: .
+
+gitSshCommand: ""
 
 modules:
   -
@@ -191,6 +194,11 @@ func sync() {
 
 	cloneRepositories = map[string]string{}
 	dependRepositories = map[string]Module{}
+
+	// SSH Command が指定されていれば適応
+	if len(data.SshCommand) > 0 {
+		os.Setenv("GIT_SSH_COMMAND", data.SshCommand)
+	}
 
 	for _, m := range data.Modules {
 		if !switch_git_repo(data, m, clone_path) {
