@@ -37,7 +37,7 @@ type DependData struct {
 const (
 	yml_file        = "./GitModuleFile.yml"
 	clone_dir       = ".gmm"
-	version         = "0.1.1"
+	version         = "0.1.2"
 	dependency_file = "GMMDepend.yml"
 	github_url      = "https://github.com/yawaLib/GitModuleManager"
 )
