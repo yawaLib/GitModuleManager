@@ -9,7 +9,7 @@ gitSshCommand: ""
 modules:
   -
     path: Chrome/Extension
-    url: git@github.com:Yayorozu/chromeExtensionSample.git
+    url: git@github.com:yayorozu/chromeExtensionSample.git
     target: master
   -
     path: Debug
