@@ -14,11 +14,36 @@ PATHの通ったところへ移動
 
 ```bash
 $ gmm version
+Git Module Manager Version 0.*.*
 ```
 
-が表示されればOK
+が表示されれば利用できます
+
+## コマンド
+#### init
+GitModuleFile.ymlを作成
+
+#### initDepend
+GMMDepend.ymlを作成
+
+#### sync
+同期を開始
+
+#### resync
+ルートパスの中を削除し再度syncを行う
+
+#### clean
+ルートパスの中を削除
+
+#### cleanCache
+Cloneしたリポジトリのキャッシュを削除する
+
+#### help
+コマンド一覧を表示
 
 ## GitModuleFile.yml
+
+リポジトリ情報は GitModuleFile.yml に記述します
 
 ```yaml
 excludes: 
@@ -26,6 +51,8 @@ excludes:
   - README*,
 
 root: .
+
+gitSshCommand: "ssh -i ~/.ssh/id_rsa_github"
 
 modules:
   -
@@ -42,6 +69,9 @@ modules:
 
 #### root:
 同期先のディレクトリ
+
+#### gitSshCommand：
+利用する秘密鍵
 
 #### modules:
 同期するモジュール一覧
@@ -75,24 +105,3 @@ modules:
     #  - 
 ```
 
-## コマンド
-#### init
-GitModuleFile.ymlを作成
-
-#### initDepend
-GMMDepend.ymlを作成
-
-#### sync
-同期を開始
-
-#### resync
-ルートパスの中を削除し再度syncを行う
-
-#### clean
-ルートパスの中を削除
-
-#### cleanCache
-Cloneしたリポジトリのキャッシュを削除する
-
-#### help
-コマンド一覧を表示
