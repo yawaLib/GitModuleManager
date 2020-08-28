@@ -9,7 +9,7 @@ tempディレクトリを作成しrsyncしている
 
 ## install bin 
 
-https://github.com/yawaLib/GitModuleManager/blob/master/gmm を DL  
+https://github.com/yayorozu/GitModuleManager/blob/master/gmm を DL  
 PATHの通ったところへ移動
 
 ```bash
